@@ -8,7 +8,11 @@ const app = express();
 
 // Enable CORS for all origins (you can restrict this later)
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://your-frontend-domain.onrender.com'],
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://pms-cgc-u.vercel.app' // Vercel frontend domain
+  ],
   credentials: true
 }));
 
