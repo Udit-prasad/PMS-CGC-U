@@ -11,7 +11,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:5173',
-    'https://pms-cgc-u.vercel.app' // Vercel frontend domain
+    'https://pms-cgc-u.vercel.app', // Vercel frontend domain
+    'https://pms-tevl.onrender.com' // Render backend domain (for SSR or API calls)
   ],
   credentials: true
 }));
