@@ -7,15 +7,13 @@ const path = require('path');
 const app = express();
 
 // Enable CORS for all origins (you can restrict this later)
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'https://pms-cgc-u.vercel.app', // Vercel frontend domain
-    'https://pms-tevl.onrender.com' // Render backend domain (for SSR or API calls)
-  ],
-  credentials: true
-}));
+const corsOptions = {
+  origin: 'https://pms-cgc-u.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
 
 // Friendly message for root route
 app.get('/', (req, res) => {
@@ -40,6 +38,7 @@ mongoose.connect(MONGODB_URI)
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
+    console.error('URI attempting to use:', process.env.MONGODB_URI);
     process.exit(1);
   });
 
