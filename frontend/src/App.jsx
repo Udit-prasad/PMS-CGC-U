@@ -7,6 +7,7 @@ import Sign from "./components/Sign";
 import About from "./components/About";
 import StudentProfile from "./components/StudentProfile";
 import Contact from "./components/Contact";
+import BackToTop from "./components/BackToTop";
 import "../src/index.css";
 import AdminJobPosting from "./components/AdminJobPosting";
 import JobsPage from "./components/jobs";
@@ -28,6 +29,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </Router>
   );
