@@ -37,7 +37,11 @@ const BackToTop = () => {
         aria-label="Back to top"
         title="Back to top"
       >
-        <ChevronUp className="back-to-top-icon" />
+        <ChevronUp 
+          className="back-to-top-icon" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        />
       </button>
     </div>
   );
