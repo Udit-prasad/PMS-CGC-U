@@ -1,0 +1,184 @@
+/* Back to Top Button - Maroon Theme */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c00030 0%, #a00028 100%);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(192, 0, 48, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.back-to-top-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.back-to-top-button:hover::before {
+  transform: scale(1);
+}
+
+.back-to-top-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 30px rgba(192, 0, 48, 0.4);
+  background: linear-gradient(135deg, #de0a3f 0%, #c00030 100%);
+}
+
+.back-to-top-button:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(192, 0, 48, 0.5);
+}
+
+.back-to-top-icon {
+  width: 100px;
+  height: 100px;
+  color: white;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.back-to-top-button:hover .back-to-top-icon {
+  transform: translateY(-3px) scale(1.1);
+  stroke-width: 3;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.back-to-top-button:active .back-to-top-icon {
+  transform: translateY(-1px) scale(1.05);
+  transition: transform 0.1s ease;
+}
+
+/* Light Mode Styles */
+body.light .back-to-top-button {
+  background: linear-gradient(135deg, #c00030 0%, #a00028 100%);
+  box-shadow: 0 4px 20px rgba(192, 0, 48, 0.25);
+}
+
+body.light .back-to-top-button:hover {
+  background: linear-gradient(135deg, #de0a3f 0%, #c00030 100%);
+  box-shadow: 0 8px 30px rgba(192, 0, 48, 0.35);
+}
+
+body.light .back-to-top-button::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Pulse Animation on First Appearance */
+.back-to-top.visible .back-to-top-button {
+  animation: pulseOnce 0.6s ease-out;
+}
+
+@keyframes pulseOnce {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .back-to-top-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .back-to-top-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .back-to-top-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .back-to-top-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Accessibility - Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: opacity 0.2s ease;
+  }
+
+  .back-to-top-button {
+    transition: background-color 0.2s ease;
+  }
+
+  .back-to-top-button:hover {
+    transform: none;
+  }
+
+  .back-to-top.visible .back-to-top-button {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .back-to-top-button {
+    border: 2px solid white;
+  }
+
+  body.light .back-to-top-button {
+    border: 2px solid #000;
+  }
+}
