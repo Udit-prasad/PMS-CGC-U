@@ -5,16 +5,5 @@ services:
 		plan: free
 		buildCommand: npm install
 		startCommand: node server.js
-		envVars:
-			- key: MONGODB_URI
-				value: mongodb+srv://jadaunmohit0:Mohit%40123@pms-cgcu.gkrai7w.mongodb.net/placement?retryWrites=true&w=majority&appName=PMS-CGCU
-			- key: NODE_ENV
-				value: production
-			- key: CLOUDINARY_CLOUD_NAME
-				value: dis7j0adr
-			- key: CLOUDINARY_API_KEY
-				value: 243752853447896
-			- key: CLOUDINARY_API_SECRET
-				value: RvV0XNSMt6If88r7grAg9yFUuFU
 		autoDeploy: true
 		rootDir: backend
