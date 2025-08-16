@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './AdminJobPosting.css';
 import { API_ENDPOINTS } from '../config/api';
+import AdminHeader from './AdminHeader';
+import { getAllJobs, createJob, updateJob, deleteJob } from '../../api/jobs';
 
 const initialForm = {
   companyName: '',
@@ -41,9 +43,16 @@ const AdminJobPosting = () => {
 
   // Fetch jobs from backend
   useEffect(() => {
-    fetch(API_ENDPOINTS.JOBS)
-      .then(res => res.json())
-      .then(data => setJobPostings(data));
+    const fetchJobs = async () => {
+      try {
+        const jobs = await getAllJobs();
+        setJobPostings(jobs);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+        alert('Error loading job postings');
+      }
+    };
+    fetchJobs();
   }, []);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -82,11 +91,11 @@ const AdminJobPosting = () => {
       setLogoPreview(URL.createObjectURL(file));
       setLogoFile(file);
     }
-  };  const handleSubmit = (e) => {
+  };  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log('Form submit - editId:', editId); // Debug log
-    console.log('Form submit - formData:', formData); // Debug log
+    console.log('Form submit - editId:', editId);
+    console.log('Form submit - formData:', formData);
     
     // Validate required fields
     if (formData.eligibleCourses.length === 0) {
@@ -98,51 +107,27 @@ const AdminJobPosting = () => {
       return;
     }
     
-    // If there's a logo file, use FormData
-    if (logoFile) {
-      const form = new FormData();
+    try {
+      let job;
       
-      // Handle regular form fields
-      Object.keys(formData).forEach(key => {
-        if (Array.isArray(formData[key])) {
-          // For arrays, send as individual entries
-          formData[key].forEach(item => {
-            form.append(`${key}[]`, item);
-          });
-        } else {
-          form.append(key, formData[key]);
-        }
-      });
+      if (editId) {
+        job = await updateJob(editId, formData);
+        setJobPostings(jobPostings.map(j => j._id === editId ? job : j));
+        alert('Job updated successfully!');
+        setActiveTab('manage');
+      } else {
+        job = await createJob(formData);
+        setJobPostings([...jobPostings, job]);
+        alert('Job created successfully!');
+      }
       
-      form.append('companyLogo', logoFile);
-
-      const url = editId
-        ? `${API_ENDPOINTS.JOBS}/${editId}`
-        : API_ENDPOINTS.JOBS;
-
-      fetch(url, {
-        method: editId ? 'PUT' : 'POST',
-        body: form,
-      })
-        .then(res => res.json())
-        .then(handleSuccess)
-        .catch(handleError);
-    } else {
-      // No file upload, send JSON
-      const url = editId
-        ? `${API_ENDPOINTS.JOBS}/${editId}`
-        : API_ENDPOINTS.JOBS;
-
-      fetch(url, {
-        method: editId ? 'PUT' : 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-        .then(res => res.json())
-        .then(handleSuccess)
-        .catch(handleError);
+      setEditId(null);
+      setFormData(initialForm);
+      setLogoPreview('');
+      setLogoFile(null);
+    } catch (error) {
+      console.error('Error saving job:', error);
+      alert('Error saving job. Please try again.');
     }
   };
   const handleSuccess = (job) => {
@@ -193,11 +178,15 @@ const AdminJobPosting = () => {
     setLogoFile(null);
   };
 
-  const handleDelete = (jobId) => {
-    fetch(`${API_ENDPOINTS.JOBS}/${jobId}`, { method: 'DELETE' })
-      .then(() => {
-        setJobPostings(jobPostings.filter(job => job._id !== jobId));
-      });
+  const handleDelete = async (jobId) => {
+    try {
+      await deleteJob(jobId);
+      setJobPostings(jobPostings.filter(job => job._id !== jobId));
+      alert('Job deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting job:', error);
+      alert('Error deleting job. Please try again.');
+    }
   };
   const handleCancel = () => {
     console.log('Cancel button clicked'); // Debug log
@@ -221,178 +210,180 @@ const AdminJobPosting = () => {
 
   return (
     <div className="admin-job-posting-container">
-      <h1>Job Posting Management</h1>
-      <div className="admin-tabs">
-        <button
-          className={activeTab === 'create' ? 'active' : ''}
-          onClick={() => handleTabChange('create')}
-        >
-          {editId ? 'Edit Job Posting' : 'Create New Job Posting'}
-        </button>
-        <button
-          className={activeTab === 'manage' ? 'active' : ''}
-          onClick={() => handleTabChange('manage')}
-        >
-          Manage Job Postings
-        </button>
-      </div>
+      <AdminHeader />
+      <div className="admin-content">
+        <h1>Job Posting Management</h1>
+        <div className="admin-tabs">
+          <button
+            className={activeTab === 'create' ? 'active' : ''}
+            onClick={() => handleTabChange('create')}
+          >
+            {editId ? 'Edit Job Posting' : 'Create New Job Posting'}
+          </button>
+          <button
+            className={activeTab === 'manage' ? 'active' : ''}
+            onClick={() => handleTabChange('manage')}
+          >
+            Manage Job Postings
+          </button>
+        </div>
 
-      {activeTab === 'create' ? (
-        <form onSubmit={handleSubmit} className="job-posting-form" encType="multipart/form-data">
+        {activeTab === 'create' ? (
+          <form onSubmit={handleSubmit} className="job-posting-form" encType="multipart/form-data">
 
 
-          <div className="form-section">
-            <h2>Company Information</h2>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Company Name*</label>
-                <input
-                  type="text"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Company Logo</label>
-                <div className="logo-upload">
-                  {logoPreview && (
-                    <img src={logoPreview} alt="Company Logo Preview" className="logo-preview" />
-                  )}
+            <div className="form-section">
+              <h2>Company Information</h2>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Company Name*</label>
                   <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleLogoUpload}
+                    type="text"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
+                    required
                   />
-                </div>              </div>
-              <div className="form-group">
-                <label>Company Website</label>
-                <input
-                  type="url"
-                  name="companyWebsite"
-                  value={formData.companyWebsite}
-                  onChange={handleInputChange}
-                  placeholder="https://www.company.com"
-                />
+                </div>
+                <div className="form-group">
+                  <label>Company Logo</label>
+                  <div className="logo-upload">
+                    {logoPreview && (
+                      <img src={logoPreview} alt="Company Logo Preview" className="logo-preview" />
+                    )}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleLogoUpload}
+                    />
+                  </div>              </div>
+                <div className="form-group">
+                  <label>Company Website</label>
+                  <input
+                    type="url"
+                    name="companyWebsite"
+                    value={formData.companyWebsite}
+                    onChange={handleInputChange}
+                    placeholder="https://www.company.com"
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Contact Person*</label>
+                  <input
+                    type="text"
+                    name="contactPerson"
+                    value={formData.contactPerson}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Contact Email*</label>
+                  <input
+                    type="email"
+                    name="contactEmail"
+                    value={formData.contactEmail}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Contact Phone</label>
+                  <input
+                    type="text"
+                    name="contactPhone"
+                    value={formData.contactPhone}
+                    onChange={handleInputChange}
+                  />
+                </div>
               </div>
             </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Contact Person*</label>
-                <input
-                  type="text"
-                  name="contactPerson"
-                  value={formData.contactPerson}
-                  onChange={handleInputChange}
-                  required
-                />
+            <div className="form-section">
+              <h2>Job Details</h2>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Position Title*</label>
+                  <input
+                    type="text"
+                    name="position"
+                    value={formData.position}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Job Type*</label>
+                  <select
+                    name="jobType"
+                    value={formData.jobType}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Contract">Contract</option>
+                  </select>
+                </div>
               </div>
-              <div className="form-group">
-                <label>Contact Email*</label>
-                <input
-                  type="email"
-                  name="contactEmail"
-                  value={formData.contactEmail}
-                  onChange={handleInputChange}
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Salary Package*</label>
+                  <input
+                    type="text"
+                    name="salaryPackage"
+                    value={formData.salaryPackage}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Location*</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
               </div>
-              <div className="form-group">
-                <label>Contact Phone</label>
-                <input
-                  type="text"
-                  name="contactPhone"
-                  value={formData.contactPhone}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="form-section">
-            <h2>Job Details</h2>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Position Title*</label>
-                <input
-                  type="text"
-                  name="position"
-                  value={formData.position}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Job Type*</label>
-                <select
-                  name="jobType"
-                  value={formData.jobType}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="Full-time">Full-time</option>
-                  <option value="Part-time">Part-time</option>
-                  <option value="Internship">Internship</option>
-                  <option value="Contract">Contract</option>
-                </select>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Salary Package*</label>
-                <input
-                  type="text"
-                  name="salaryPackage"
-                  value={formData.salaryPackage}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Location*</label>
-                <input
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleInputChange}
-                  required
-                />
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Drive Date</label>
+                  <input
+                    type="date"
+                    name="driveDate"
+                    value={formData.driveDate}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Application Deadline*</label>
+                  <input
+                    type="date"
+                    name="applicationDeadline"
+                    value={formData.applicationDeadline}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
               </div>
             </div>
-            <div className="form-row">
+            <div className="form-section">
+              <h2>Job Requirements</h2>
               <div className="form-group">
-                <label>Drive Date</label>
-                <input
-                  type="date"
-                  name="driveDate"
-                  value={formData.driveDate}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label>Application Deadline*</label>
-                <input
-                  type="date"
-                  name="applicationDeadline"
-                  value={formData.applicationDeadline}
+                <label>Job Description*</label>
+                <textarea
+                  name="jobDescription"
+                  value={formData.jobDescription}
                   onChange={handleInputChange}
                   required
+                  rows="5"
                 />
               </div>
-            </div>
-          </div>
-          <div className="form-section">
-            <h2>Job Requirements</h2>
-            <div className="form-group">
-              <label>Job Description*</label>
-              <textarea
-                name="jobDescription"
-                value={formData.jobDescription}
-                onChange={handleInputChange}
-                required
-                rows="5"
-              />
-            </div>
 
 <div className="form-section">
   <h2>Eligibility Details</h2>
@@ -553,19 +544,19 @@ const AdminJobPosting = () => {
 
 
           <div className="form-actions">
-  <button type="submit" className="submit-btn">
-    {editId ? 'Update Job Posting' : 'Create Job Posting'}
-  </button>
-  {editId && (
-    <button
-      type="button"
-      className="cancel-btn"
-      onClick={handleCancel}
-    >
-      Cancel
+    <button type="submit" className="submit-btn">
+      {editId ? 'Update Job Posting' : 'Create Job Posting'}
     </button>
-  )}
-</div>
+    {editId && (
+      <button
+        type="button"
+        className="cancel-btn"
+        onClick={handleCancel}
+      >
+        Cancel
+      </button>
+    )}
+  </div>
 </form>
 ) : (
 <div className="job-postings-list">
@@ -651,6 +642,7 @@ const AdminJobPosting = () => {
   )}
 </div>
 )}
+</div>
 </div>
 );
 };

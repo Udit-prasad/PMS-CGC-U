@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { signup, signin } from "../../api/auth";
 import "./sign.css";
 
 function Sign() {
@@ -14,23 +15,34 @@ function Sign() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Registration logic here (e.g., API call)
-    if (form.password !== form.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+    try {
+      const res = await signup({
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        confirmPassword: form.confirmPassword,
+      });
+      alert(res.message || "Registered successfully! Please sign in.");
+      setIsRegister(false);
+      setForm({ name: "", email: "", password: "", confirmPassword: "" });
+    } catch (err) {
+      const msg = err?.response?.data?.error || "Registration failed";
+      alert(msg);
     }
-    alert("Registered successfully! Please sign in.");
-    setIsRegister(false);
-    setForm({ name: "", email: "", password: "", confirmPassword: "" });
   };
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    // Sign-in logic here (e.g., API call)
-    alert("Signed in as " + form.email);
-    setForm({ name: "", email: "", password: "", confirmPassword: "" });
+    try {
+      const res = await signin({ email: form.email, password: form.password });
+      alert(res.message || ("Signed in as " + form.email));
+      setForm({ name: "", email: "", password: "", confirmPassword: "" });
+    } catch (err) {
+      const msg = err?.response?.data?.error || "Sign in failed";
+      alert(msg);
+    }
   };
 
   return (

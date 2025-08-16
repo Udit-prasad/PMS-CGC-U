@@ -1,54 +1,46 @@
 /* Main Container */
 .admin-job-posting-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 28px 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #fff;
-  background: #111;
   min-height: 100vh;
+  background: #f5f7fa;
 }
 
-.admin-job-posting-container h1 {
-  color: #FFD600;
+.admin-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.admin-content h1 {
+  color: #2c3e50;
   margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 700;
   text-align: center;
-  letter-spacing: 1px;
 }
 
 /* Tabs */
 .admin-tabs {
   display: flex;
+  justify-content: center;
   margin-bottom: 30px;
-  border-bottom: 2px solid #FFD600;
-  background: #181818;
-  border-radius: 12px 12px 0 0;
-  overflow: hidden;
+  gap: 10px;
 }
 
 .admin-tabs button {
-  padding: 14px 32px;
-  background: none;
-  border: none;
+  padding: 12px 24px;
+  border: 2px solid #3498db;
+  background: white;
+  color: #3498db;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 17px;
-  color: #FFD600;
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s;
-  font-weight: 500;
-  background: #181818;
-}
-
-.admin-tabs button:hover {
-  background: #FFD600;
-  color: #181818;
-}
-
-.admin-tabs button.active {
-  color: #181818;
-  background: #FFD600;
-  border-bottom: 3px solid #FFD600;
   font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-tabs button.active,
+.admin-tabs button:hover {
+  background: #3498db;
+  color: white;
 }
 
 /* Form Styles */
