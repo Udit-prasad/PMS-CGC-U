@@ -7,13 +7,11 @@ import { API_ENDPOINTS } from '../config/api';
 const JobCard = ({ job, onClick }) => {
   console.log('Job data in JobCard:', job); // Debug log
   
-  // Handle logo URL properly - support both Cloudinary and local storage
+  // Handle logo URL for local storage only
   const logoUrl = job.companyLogo
-    ? job.companyLogo.startsWith('http')
-      ? job.companyLogo // Cloudinary URL (starts with https://)
-      : job.companyLogo.startsWith('/uploads/')
-        ? `${API_ENDPOINTS.UPLOADS}${job.companyLogo}` // Local storage URL
-        : `${API_ENDPOINTS.UPLOADS}/uploads/${job.companyLogo}` // Fallback for local
+    ? job.companyLogo.startsWith('/uploads/')
+      ? `${API_ENDPOINTS.UPLOADS}${job.companyLogo}` // Local storage URL
+      : `${API_ENDPOINTS.UPLOADS}/uploads/${job.companyLogo}` // Fallback for local
     : '/default-logo.png'; // Default logo fallback
 
   const skills = job.skillsRequired ? job.skillsRequired.split(',').map(s => s.trim()) : [];
