@@ -261,8 +261,6 @@ We're actively seeking passionate developers to help us revolutionize campus pla
 
 ### **🚀 Together, let's bring placement digitalization to every campus worldwide!**
 
-*Made with ❤️ by the PMS-CGC-U Community*
-
 </div>
 
 ---
