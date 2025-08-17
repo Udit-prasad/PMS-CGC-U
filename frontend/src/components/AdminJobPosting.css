@@ -66,6 +66,13 @@
   letter-spacing: 0.5px;
 }
 
+.section-description {
+  color: #ccc;
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
 .form-row {
   display: flex;
   gap: 20px;
@@ -88,6 +95,7 @@
 .form-group input[type="email"],
 .form-group input[type="date"],
 .form-group input[type="file"],
+.form-group input[type="url"],
 .form-group select,
 .form-group textarea {
   width: 100%;
@@ -100,428 +108,576 @@
   transition: border 0.2s, background 0.2s;
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group input[type="date"]:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border: 1.5px solid #FFD600;
-  background: #181818;
-  outline: none;
+/* Form Builder Styles */
+.form-builder-controls {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.form-group textarea {
-  min-height: 80px;
-  resize: vertical;
+.add-field-btn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
 }
 
-.form-group input[type="file"] {
-  padding: 5px;
-  background: #222;
-  color: #FFD600;
+.add-field-btn:hover {
+  background: #229954;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
 }
 
-/* Enhanced Multi-Select Styles */
-.multi-select {
-  height: auto;
-  min-height: 100px;
-  padding: 5px;
-  background: #222;
-  color: #fff;
-  border: 1.5px solid #FFD60055;
-  border-radius: 6px;
-  transition: border 0.2s;
+.form-fields-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.multi-select:focus {
-  border: 1.5px solid #FFD600;
-  outline: none;
-}
-
-.multi-select option {
-  padding: 8px 12px;
-  background: #222;
-  color: #fff;
-  border-bottom: 1px solid #FFD60033;
-  transition: background 0.2s;
-}
-
-.multi-select option:hover {
-  background: #FFD600;
-  color: #181818;
-}
-
-.multi-select option:checked {
-  background: #FFD600;
-  color: #181818;
-  font-weight: bold;
-}
-
-/* Multi-select container for better styling */
-.multi-select-container {
+.form-field-builder {
+  background: #2c2c2c;
+  border: 2px solid #FFD60033;
+  border-radius: 10px;
+  padding: 20px;
   position: relative;
 }
 
-.multi-select-container::after {
-  content: "⌄";
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  color: #FFD600;
-  pointer-events: none;
-}
-
-/* Logo Upload */
-.logo-upload {
+.field-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-}
-
-.logo-preview {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  border: 2px solid #FFD600;
-  border-radius: 8px;
-  background: #222;
-}
-
-/* Form Actions */
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-.submit-btn {
-  background: linear-gradient(90deg, #FFD600 0%, #FFEA00 100%);
-  color: #181818;
-  border: none;
-  padding: 12px 32px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(255, 214, 0, 0.10);
-  letter-spacing: 0.5px;
-}
-
-.submit-btn:hover {
-  background: #FFD600;
-  color: #111;
-  box-shadow: 0 4px 24px rgba(255, 214, 0, 0.18);
-}
-
-.cancel-btn {
-  background: #181818;
-  color: #FFD600;
-  border: 2px solid #FFD600;
-  padding: 12px 32px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s, border 0.2s;
-}
-
-.cancel-btn:hover {
-  background: #FFD600;
-  color: #181818;
-  border: 2px solid #FFD600;
-}
-
-/* Job Postings List */
-.job-postings-list {
-  background: #181818;
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(255, 214, 0, 0.10);
-  color: #fff;
-}
-
-.job-postings-list h2 {
-  margin-top: 0;
-  color: #FFD600;
   margin-bottom: 20px;
-}
-
-.no-postings {
-  text-align: center;
-  padding: 40px;
-  color: #FFD60099;
-  font-style: italic;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #181818;
-  color: #fff;
-}
-
-table th,
-table td {
-  padding: 12px 15px;
-  text-align: left;
+  padding-bottom: 15px;
   border-bottom: 1px solid #FFD60033;
 }
 
-table th {
-  background-color: #222;
-  font-weight: 600;
+.field-header h4 {
   color: #FFD600;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
 }
 
-table tr:hover {
-  background-color: #222;
+.remove-field-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.company-cell {
+.remove-field-btn:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+.field-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.field-options {
+  background: #333;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #FFD60033;
+}
+
+.field-options label {
+  color: #FFD600;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-input {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.company-logo-small {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  border-radius: 50%;
-  background: #222;
-  border: 1.5px solid #FFD600;
+.option-input input {
+  flex: 1;
+  background: #444;
+  border: 1px solid #FFD60055;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
-/* Badge styles for eligibility tags */
-.eligibility-badge {
-  display: inline-block;
-  background: #FFD60022;
-  color: #FFD600;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin: 2px;
-  border: 1px solid #FFD60033;
-}
-
-/* Action Buttons */
-.edit-btn {
-  background: #FFD600;
-  color: #181818;
-  border: none;
-  padding: 7px 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
-}
-
-.edit-btn:hover {
-  background: #181818;
-  color: #FFD600;
-  border: 1.5px solid #FFD600;
-}
-
-.delete-btn {
+.remove-option-btn {
   background: #e74c3c;
-  color: #fff;
+  color: white;
   border: none;
-  padding: 7px 16px;
-  border-radius: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.remove-option-btn:hover {
+  background: #c0392b;
+  transform: scale(1.1);
+}
+
+.add-option-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.add-option-btn:hover {
+  background: #2980b9;
+  transform: translateY(-1px);
+}
+
+.field-help {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Campus Type Badge */
+.campus-type {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
   font-weight: 600;
-  transition: background 0.2s, color 0.2s;
+  text-transform: capitalize;
 }
 
-.delete-btn:hover {
-  background: #FFD600;
-  color: #e74c3c;
-  border: 1.5px solid #e74c3c;
+.campus-type.on-campus {
+  background: #27ae60;
+  color: white;
 }
 
-/* Checkbox Grid Styles */
-.checkbox-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  margin-bottom: 15px;
-  padding: 15px;
-  background: #222;
-  border-radius: 8px;
-  border: 1.5px solid #FFD60055;
+.campus-type.off-campus {
+  background: #3498db;
+  color: white;
 }
 
-.checkbox-item {
+/* Checkbox Label */
+.checkbox-label {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  background: #2a2a2a;
-  border: 1px solid transparent;
-}
-
-.checkbox-item:hover {
-  background: #FFD60020;
-  border-color: #FFD60050;
-}
-
-.checkbox-item input[type="checkbox"] {
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #FFD600;
-  border-radius: 3px;
-  background: #222;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.2s ease;
-}
-
-.checkbox-item input[type="checkbox"]:checked {
-  background: #FFD600;
-  border-color: #FFD600;
-}
-
-.checkbox-item input[type="checkbox"]:checked::after {
-  content: "✓";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #181818;
-  font-weight: bold;
-  font-size: 12px;
-}
-
-.checkbox-label {
-  color: #fff;
-  font-size: 14px;
   font-weight: 500;
-  user-select: none;
-}
-
-.checkbox-item:has(input:checked) .checkbox-label {
   color: #FFD600;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* Required Field Indicator */
+.required {
+  color: #e74c3c;
+  margin-left: 4px;
+}
+
+/* Job Postings List - Improved Styling */
+.job-postings-list {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  color: #2c3e50;
+}
+
+.job-postings-list h2 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 15px;
+}
+
+.no-postings {
+  text-align: center;
+  padding: 60px 20px;
+  color: #7f8c8d;
+  font-size: 18px;
+}
+
+.no-postings p {
+  margin: 10px 0 0 0;
+  color: #95a5a6;
+  font-size: 16px;
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Table Styling */
+.job-postings-list table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.job-postings-list thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.job-postings-list th {
+  padding: 18px 16px;
+  text-align: left;
   font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.selected-items {
-  margin-top: 10px;
-  padding: 10px;
-  background: #FFD60010;
-  border-radius: 6px;
-  border-left: 3px solid #FFD600;
+.job-postings-list tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #ecf0f1;
 }
 
-.selected-label {
-  color: #FFD600;
+.job-postings-list tbody tr:hover {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.job-postings-list tbody tr:last-child {
+  border-bottom: none;
+}
+
+.job-postings-list td {
+  padding: 18px 16px;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #2c3e50;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.job-postings-list tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Company Cell Styling */
+.company-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-weight: 600;
-  margin-right: 8px;
+  color: #2c3e50;
 }
 
-.selected-items {
-  color: #fff;
+.company-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.company-logo-small {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid #ecf0f1;
+  background: #f8f9fa;
+  padding: 4px;
+}
+
+/* Position Text */
+.position-text {
+  font-weight: 600;
+  color: #2c3e50;
   font-size: 14px;
 }
 
-/* Selection Controls */
-.selection-controls {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: flex-end;
+/* Campus Type Badge in Table */
+.campus-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.select-all-btn {
-  background: #FFD600;
-  color: #181818;
+.campus-type.on-campus {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+}
+
+.campus-type.off-campus {
+  background: linear-gradient(135deg, #3498db, #5dade2);
+  color: white;
+}
+
+/* Job Type Badge */
+.job-type-badge {
+  background: #ecf0f1;
+  color: #2c3e50;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #bdc3c7;
+}
+
+/* Package Text */
+.package-text {
+  font-weight: 600;
+  color: #27ae60;
+  font-size: 14px;
+}
+
+/* Eligibility Info */
+.eligibility-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.courses-text {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 13px;
+}
+
+.branches-text {
+  font-size: 11px;
+  color: #7f8c8d;
+}
+
+.branch-label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* Years Text */
+.years-text {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 13px;
+}
+
+/* Deadline Text */
+.deadline-text {
+  font-weight: 500;
+  color: #e67e22;
+  font-size: 13px;
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Action Buttons */
+.job-postings-list .edit-btn,
+.job-postings-list .delete-btn {
+  padding: 8px 16px;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 80px;
 }
 
-.select-all-btn:hover {
-  background: #ffdd00;
+.job-postings-list .edit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.job-postings-list .edit-btn:hover {
+  background: #2980b9;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
-/* Responsive Styles */
-@media (max-width: 900px) {
-  .job-posting-form,
+.job-postings-list .delete-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.job-postings-list .delete-btn:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* Eligibility Tags */
+.eligibility-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.eligibility-tag {
+  background: #ecf0f1;
+  color: #2c3e50;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid #bdc3c7;
+}
+
+/* Responsive Design for Table */
+@media (max-width: 1024px) {
   .job-postings-list {
-    padding: 18px;
+    padding: 20px;
   }
   
-  .form-row {
-    flex-wrap: wrap;
+  .job-postings-list table {
+    font-size: 13px;
   }
   
-  .form-group {
-    min-width: 100%;
+  .job-postings-list th,
+  .job-postings-list td {
+    padding: 14px 12px;
+  }
+  
+  .company-logo-small {
+    width: 32px;
+    height: 32px;
   }
 }
 
 @media (max-width: 768px) {
-  .form-row {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .form-actions {
-    justify-content: center;
-  }
-
-  table {
-    display: block;
+  .job-postings-list {
+    padding: 15px;
     overflow-x: auto;
   }
   
-  /* Adjust multi-select on mobile */
-  .multi-select {
-    min-height: 80px;
+  .job-postings-list table {
+    min-width: 800px;
+  }
+  
+  .job-postings-list h2 {
+    font-size: 20px;
+  }
+  
+  .job-postings-list th,
+  .job-postings-list td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+  
+  .campus-type {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+  
+  .job-postings-list .edit-btn,
+  .job-postings-list .delete-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    min-width: 70px;
+  }
+  
+  .action-buttons {
+    gap: 4px;
   }
 }
 
 @media (max-width: 480px) {
-  .admin-tabs {
-    flex-direction: column;
-  }
-
-  .admin-tabs button {
-    width: 100%;
-    text-align: left;
-    border-bottom: none;
-    border-left: 3px solid transparent;
-  }
-
-  .admin-tabs button.active {
-    border-bottom: none;
-    border-left: 3px solid #FFD600;
-  }
-
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .submit-btn, .cancel-btn {
-    width: 100%;
+  .job-postings-list {
+    padding: 10px;
   }
   
-  /* Stack eligibility badges on small screens */
-  .eligibility-badges-container {
-    display: flex;
-    flex-wrap: wrap;
+  .job-postings-list h2 {
+    font-size: 18px;
+  }
+  
+  .company-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  
+  .company-logo-small {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .job-postings-list .edit-btn,
+  .job-postings-list .delete-btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* Responsive Design for Form Builder */
+@media (max-width: 768px) {
+  .form-field-builder {
+    padding: 15px;
+  }
+  
+  .field-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .field-inputs .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .option-input {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .add-option-btn {
+    align-self: stretch;
+    text-align: center;
   }
 }

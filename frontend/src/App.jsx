@@ -11,6 +11,7 @@ import "../src/index.css";
 import AdminJobPosting from "./components/AdminJobPosting";
 import AdminLogin from "./components/AdminLogin";
 import AdminManagement from "./components/AdminManagement";
+import ApplicationManagement from "./components/ApplicationManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 import JobsPage from "./components/jobs";
 
@@ -80,6 +81,11 @@ function App() {
           <Route path="/admin-job-posting" element={
             <ProtectedRoute requireAdmin={true}>
               <AdminJobPosting />
+            </ProtectedRoute>
+          } />
+          <Route path="/application-management" element={
+            <ProtectedRoute requireAdmin={true}>
+              <ApplicationManagement />
             </ProtectedRoute>
           } />
           <Route path="/admin-management" element={

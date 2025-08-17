@@ -34,6 +34,12 @@ const AdminHeader = () => {
             >
               📝 Job Management
             </button>
+            <button 
+              className="nav-btn"
+              onClick={() => handleNavigation('/application-management')}
+            >
+              📋 Application Management
+            </button>
             {isSuperAdmin && (
               <button 
                 className="nav-btn"

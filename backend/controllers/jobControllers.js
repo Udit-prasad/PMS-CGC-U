@@ -37,6 +37,25 @@ exports.createJob = async (req, res) => {
     if (!jobData.eligibleBranches) jobData.eligibleBranches = [];
     if (!jobData.eligibleYears) jobData.eligibleYears = [];
     
+    // Handle applicationFormFields for on-campus jobs
+    if (jobData.campusType === 'on-campus' && jobData.applicationFormFields) {
+      try {
+        jobData.applicationFormFields = JSON.parse(jobData.applicationFormFields);
+      } catch (e) {
+        // If it's already an object, use as is
+        if (Array.isArray(jobData.applicationFormFields)) {
+          // Already an array, use as is
+        } else {
+          jobData.applicationFormFields = [];
+        }
+      }
+    }
+    
+    // Set default campusType if not provided
+    if (!jobData.campusType) {
+      jobData.campusType = 'off-campus';
+    }
+    
     if (req.file) {
       jobData.companyLogo = `/uploads/${req.file.filename}`;
     }
@@ -83,6 +102,20 @@ exports.updateJob = async (req, res) => {
     if (!jobData.eligibleCourses) jobData.eligibleCourses = [];
     if (!jobData.eligibleBranches) jobData.eligibleBranches = [];
     if (!jobData.eligibleYears) jobData.eligibleYears = [];
+    
+    // Handle applicationFormFields for on-campus jobs
+    if (jobData.campusType === 'on-campus' && jobData.applicationFormFields) {
+      try {
+        jobData.applicationFormFields = JSON.parse(jobData.applicationFormFields);
+      } catch (e) {
+        // If it's already an object, use as is
+        if (Array.isArray(jobData.applicationFormFields)) {
+          // Already an array, use as is
+        } else {
+          jobData.applicationFormFields = [];
+        }
+      }
+    }
     
     if (req.file) {
       jobData.companyLogo = `/uploads/${req.file.filename}`;

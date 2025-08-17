@@ -1,31 +1,28 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const jobController = require('../controllers/jobControllers');
+const { requireAuth, requireAdmin } = require('../middleware/auth');
+
 const router = express.Router();
-const { requireAuth, requireRole } = require('../middleware/auth');
-const {
-  getAllAdmins,
-  inviteAdmin,
-  updateAdmin,
-  deleteAdmin,
-  changePassword
-} = require('../controllers/adminController');
 
-// All routes require authentication
-router.use(requireAuth);
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage });
 
-// Get all admins (super admin only)
-router.get('/admins', requireRole('super_admin'), getAllAdmins);
+// Public routes (read-only)
+router.get('/', jobController.getAllJobs);
 
-// Invite new admin (super admin only)
-router.post('/invite', requireRole('super_admin'), inviteAdmin);
-
-// Update admin (super admin only)
-router.put('/admins/:id', requireRole('super_admin'), updateAdmin);
-
-// Delete admin (super admin only)
-router.delete('/admins/:id', requireRole('super_admin'), deleteAdmin);
-
-// Change password (any admin)
-router.post('/change-password', changePassword);
+// Protected routes (admin only)
+router.post('/', requireAuth, requireAdmin, upload.single('companyLogo'), jobController.createJob);
+router.put('/:id', requireAuth, requireAdmin, upload.single('companyLogo'), jobController.updateJob);
+router.delete('/:id', requireAuth, requireAdmin, jobController.deleteJob);
 
 module.exports = router;
-

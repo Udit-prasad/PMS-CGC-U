@@ -41,13 +41,21 @@ app.use('/uploads', imageRoutes);
 const jobRoutes = require('./routes/jobRoutes');
 app.use('/api/jobs', jobRoutes);
 
+// Application routes
+const applicationRoutes = require('./routes/applicationRoutes');
+app.use('/api/applications', applicationRoutes);
+
 // Auth routes
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
-// Admin routes
+// Admin routes (job management)
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/admin', adminRoutes);
+
+// Admin management routes (user management)
+const adminManagementRoutes = require('./routes/adminManagementRoutes');
+app.use('/api/admin-management', adminManagementRoutes);
 
 // Connect to MongoDB (use environment variable for production)
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/placement';
