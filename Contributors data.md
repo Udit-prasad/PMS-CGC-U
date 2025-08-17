@@ -28,5 +28,5 @@ Contributors:
 | 8        | HetviThakkar-025  | 7         | #38       | Updated PMS-CGC-U Website to Maroon Primary Theme        |
 | 9        | Prerna799         | 3         | #49       | Updated PMS-CGC-U Website Name                           |
 | 10       | Salusha           | 7         | #46       | Modified PMS-CGC-U Navbar                                |
-
+| 11       | Salusha           | 7         | #61       | Modified-Admin Panel                                     |
 
