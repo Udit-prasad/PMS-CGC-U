@@ -15,7 +15,7 @@ This document records **all contributions** to the project and assigns points ba
 > ✅ **Approval:** Points updated **only** by the Mentor or Project Admin (PA) at the end of the day.
 
 
-Contributors:
+
 | #️⃣ S.No | 👤 GitHub Profile | 🎯 Points | 🔗 PR No. | 📌 Task Description                                      |
 | -------- | ----------------- | --------- | --------- | -------------------------------------------------------- |
 | 1        | hemanth5055       | 3         | #19       | Enhanced contact links appearance                        |
@@ -29,4 +29,7 @@ Contributors:
 | 9        | Prerna799         | 3         | #49       | Updated PMS-CGC-U Website Name                           |
 | 10       | Salusha           | 7         | #46       | Modified PMS-CGC-U Navbar                                |
 | 11       | Salusha           | 7         | #61       | Modified-Admin Panel                                     |
+| 12       | RoshniRautela     | 3         | #65       | Applied dark mode to login page                          |
+| 13       | Sathish1708127    | 3         | #66, #67  | Fixed hover underline & phone icon in Contact Us         |
+
 
