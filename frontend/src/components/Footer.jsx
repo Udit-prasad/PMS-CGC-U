@@ -88,7 +88,11 @@ function Footer() {
                   <span>contact@placementsystem.com</span>
                 </li>
                 <li>
+<<<<<<< HEAD
                   <FaPhone className="contact-icon phone" />
+=======
+                  <FaPhone className="contact-icon" />
+>>>>>>> origin/job-fetching-fix
                   <span>(555) 123-4567</span>
                 </li>
               </ul>
@@ -106,7 +110,11 @@ function Footer() {
             <a href="/signin" className="footer-cta-button">
               Sign In
             </a>
+<<<<<<< HEAD
             <a href="/contact" className="outline">
+=======
+            <a href="/contact" className="footer-cta-button outline">
+>>>>>>> origin/job-fetching-fix
               Contact Us
             </a>
           </div>

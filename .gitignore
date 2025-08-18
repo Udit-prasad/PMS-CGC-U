@@ -28,6 +28,7 @@ Thumbs.db
 *.swp
 *.swo
 
+<<<<<<< HEAD
 # Uploads (allow uploads folder structure but ignore image files)
 backend/uploads/*.png
 backend/uploads/*.jpg
@@ -35,3 +36,7 @@ backend/uploads/*.jpeg
 backend/uploads/*.gif
 backend/uploads/*.webp
 backend/uploads/*.svg
+=======
+# Uploads
+backend/uploads/
+>>>>>>> origin/job-fetching-fix

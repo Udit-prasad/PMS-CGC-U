@@ -61,7 +61,10 @@ body.light .logo-image {
 
 body.light .logo-link {
   text-shadow: none;
+<<<<<<< HEAD
   color: rgba(128, 0, 0, 0.9);
+=======
+>>>>>>> origin/job-fetching-fix
 }
 
 .logo-link:hover {
@@ -240,7 +243,10 @@ body.light .login-btn:hover {
    margin-left: -32px; 
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/job-fetching-fix
 body.dark .login-btn {
   color: #fdfdfd;
   text-shadow: 0 1px 3px rgba(222, 216, 216, 0.5); 
