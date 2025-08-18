@@ -10,7 +10,7 @@ cd PMS-CGC-U/backend
 npm install
 ```
 
-### 2. Create Environment File
+### 2. Create Environment 
 Create a `.env` file in the `backend` directory:
 ```bash
 PORT=5000
