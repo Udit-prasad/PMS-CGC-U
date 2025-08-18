@@ -221,6 +221,10 @@ We're actively seeking passionate developers to help us revolutionize campus pla
 
 ---
 
+## 🧑‍🏫 *Mentors*
+
+- [Sanjana Gurav](https://github.com/213sanjana)
+
 ## 📞 **Connect With Us**
 
 <div align="center">
@@ -256,8 +260,6 @@ We're actively seeking passionate developers to help us revolutionize campus pla
 <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="900">
 
 ### **🚀 Together, let's bring placement digitalization to every campus worldwide!**
-
-*Made with ❤️ by the PMS-CGC-U Community*
 
 </div>
 

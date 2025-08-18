@@ -3,10 +3,7 @@ services:
 		name: pms-cgc-u-backend
 		env: node
 		plan: free
-		buildCommand: npm install
+		buildCommand: rm -rf node_modules package-lock.json && npm install
 		startCommand: node server.js
-		envVars:
-			- key: MONGODB_URI
-				value: mongodb+srv://jadaunmohit0:Mohitjadaun@123@pms-cgcu.gkrai7w.mongodb.net/
 		autoDeploy: true
 		rootDir: backend
