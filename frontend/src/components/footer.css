@@ -188,12 +188,9 @@
   gap: 1rem;
 }
 
-<<<<<<< HEAD
 .phone {
   transform: rotateZ(90deg);
 }
-=======
->>>>>>> origin/job-fetching-fix
 .footer-cta-button {
   padding: 0.6rem 1.25rem;
   border-radius: 0.375rem;
@@ -209,7 +206,6 @@
   color: white;
   border: 1px solid var(--primary-color);
 }
-<<<<<<< HEAD
 .outline {
   padding: 0.6rem 1.25rem;
   border-radius: 0.375rem;
@@ -230,34 +226,16 @@
 }
 
 .outline:hover, .footer-cta-button:hover {
-=======
-
-.footer-cta-button.outline {
-  background: transparent;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-}
-
-.footer-cta-button:hover {
->>>>>>> origin/job-fetching-fix
   background: var(--primary-hover);
   border-color: var(--primary-hover);
   transform: translateY(-2px);
   color: white;
-<<<<<<< HEAD
   text-decoration: none;
 }
 
 .footer-cta-button .outline:hover {
   background: rgba(128, 0, 0, 0.1);
   background-color: var(--primary-hover);
-=======
-}
-
-.footer-cta-button.outline:hover {
-  background: rgba(128, 0, 0, 0.1);
-  color: var(--primary-hover);
->>>>>>> origin/job-fetching-fix
 }
 
 /* Light Mode Styles */

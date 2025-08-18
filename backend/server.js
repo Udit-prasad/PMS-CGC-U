@@ -3,7 +3,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-<<<<<<< HEAD
 const multer = require('multer');
 
 const app = express();
@@ -27,40 +26,16 @@ const corsOptions = {
   },
   methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
   credentials: true,
-=======
-
-const app = express();
-
-// Enable CORS for local dev and production
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://127.0.0.1:5173',
-  'https://pms-cgc-u.vercel.app'
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Not allowed by CORS'));
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
->>>>>>> origin/job-fetching-fix
   optionsSuccessStatus: 204
 };
 app.use(cors(corsOptions));
 
-<<<<<<< HEAD
 // Debugging: log request origins
 app.use((req, res, next) => {
   console.log("➡️ Request Origin:", req.headers.origin);
   next();
 });
 
-=======
->>>>>>> origin/job-fetching-fix
 // Friendly message for root route
 app.get('/', (req, res) => {
   res.send('Welcome to PMS-CGC-U Backend 🚀');
@@ -76,7 +51,6 @@ app.use('/uploads', imageRoutes);
 const jobRoutes = require('./routes/jobRoutes');
 app.use('/api/jobs', jobRoutes);
 
-<<<<<<< HEAD
 // Error handling middleware for multer and other errors
 app.use((error, req, res, next) => {
   console.error('Server error:', error);
@@ -131,34 +105,6 @@ mongoose.connect(MONGODB_URI)
     if (process.env.NODE_ENV !== 'production') {
       process.exit(1);
     }
-=======
-// Application routes
-const applicationRoutes = require('./routes/applicationRoutes');
-app.use('/api/applications', applicationRoutes);
-
-// Auth routes
-const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
-
-// Admin routes (job management)
-const adminRoutes = require('./routes/adminRoutes');
-app.use('/api/admin', adminRoutes);
-
-// Admin management routes (user management)
-const adminManagementRoutes = require('./routes/adminManagementRoutes');
-app.use('/api/admin-management', adminManagementRoutes);
-
-// Connect to MongoDB (use environment variable for production)
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/placement';
-mongoose.connect(MONGODB_URI)
-  .then(() => {
-    console.log('Connected to MongoDB Atlas');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-    console.error('URI attempting to use:', process.env.MONGODB_URI);
-    process.exit(1);
->>>>>>> origin/job-fetching-fix
   });
 
 // Use environment port or default to 5000
@@ -166,10 +112,5 @@ const PORT = process.env.PORT || 5000;
 
 // Start server
 app.listen(PORT, () => {
-<<<<<<< HEAD
   console.log(`🚀 Server running on port ${PORT}`);
 });
-=======
-  console.log(`Server running on port ${PORT}`);
-});
->>>>>>> origin/job-fetching-fix

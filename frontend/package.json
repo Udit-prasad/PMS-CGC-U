@@ -10,21 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@tailwindcss/vite": "^4.1.12",
-=======
-    "axios": "^1.6.0",
->>>>>>> origin/job-fetching-fix
     "lucide-react": "^0.514.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-<<<<<<< HEAD
     "react-router-dom": "^7.6.2",
     "tailwindcss": "^4.1.12"
-=======
-    "react-router-dom": "^7.6.2"
->>>>>>> origin/job-fetching-fix
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
