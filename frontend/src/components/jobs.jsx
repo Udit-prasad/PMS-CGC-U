@@ -8,7 +8,7 @@ const JobCard = ({ job, onClick }) => {
   console.log('Job data in JobCard:', job); // Debug log
   
   const logoUrl = job.companyLogo
-    ? `${API_ENDPOINTS.UPLOINTS}${job.companyLogo}`
+    ? `${API_ENDPOINTS.UPLOADS}${job.companyLogo}`
     : '/default-logo.png';
 
   const skills = job.skillsRequired ? job.skillsRequired.split(',').map(s => s.trim()) : [];
@@ -495,7 +495,7 @@ const JobDetails = ({ job, onBack, onApply }) => {
 
   // Build the correct logo URL
   const logoUrl = job.companyLogo
-    ? `${API_ENDPOINTS.UPLOINTS}${job.companyLogo}`
+    ? `${API_ENDPOINTS.UPLOADS}${job.companyLogo}`
     : '/default-logo.png';
 
   const handleApplyClick = () => {
