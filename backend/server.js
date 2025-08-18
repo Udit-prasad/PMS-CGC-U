@@ -10,7 +10,8 @@ const app = express();
 // ✅ Allowed origins (production + local dev)
 const allowedOrigins = [
   'https://pms-cgc-u.vercel.app',
-  'http://localhost:5180'
+  'http://localhost:5180',
+  'https://pms-cgc-g2s51des5-mohit-jadauns-projects.vercel.app'
 ];
 
 // ✅ Dynamic CORS setup
