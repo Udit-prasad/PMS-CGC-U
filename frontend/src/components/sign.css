@@ -90,3 +90,47 @@ body.light .sign-card {
 .toggle-link button:hover {
   color: #1e40af;
 }
+
+/* Validation UI */
+.field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.error-text {
+  color: #9a0d0d; /* dark maroon */
+  font-size: 0.82rem;
+  margin-left: 0.25rem;
+}
+
+.error-text {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.input-error {
+  border: 1.5px solid #9a0707 !important;
+  box-shadow: 0 0 0 3px rgba(107,15,15,0.06);
+}
+
+.error-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.input-success {
+  border: 1.5px solid #16a34a !important; /* green-600 */
+  box-shadow: 0 0 0 3px rgba(16,163,127,0.06);
+}
+
+/* small screens: make card width adapt */
+@media (max-width: 420px) {
+  .sign-card {
+    width: calc(100% - 40px);
+    padding: 1.5rem;
+  }
+  .sign-card h2 { font-size: 1.25rem; }
+}
