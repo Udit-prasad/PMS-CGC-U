@@ -1,28 +1,47 @@
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const jobController = require('../controllers/jobControllers');
-const { requireAuth, requireAdmin } = require('../middleware/auth');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
+require('dotenv').config();
 
-const router = express.Router();
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/placement';
 
-// Multer setup for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+async function createAdminUser() {
+  try {
+    // Connect to MongoDB
+    await mongoose.connect(MONGODB_URI);
+    console.log('Connected to MongoDB');
+
+    // Check if admin already exists
+    const existingAdmin = await User.findOne({ email: 'admin@cgcu.edu' });
+    if (existingAdmin) {
+      console.log('Admin user already exists');
+      process.exit(0);
+    }
+
+    // Create admin user
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash('admin123', saltRounds);
+
+    const adminUser = new User({
+      name: 'System Administrator',
+      email: 'admin@cgcu.edu',
+      passwordHash,
+      role: 'admin'
+    });
+
+    await adminUser.save();
+    console.log('Admin user created successfully!');
+    console.log('Email: admin@cgcu.edu');
+    console.log('Password: admin123');
+    console.log('Role: admin');
+
+  } catch (error) {
+    console.error('Error creating admin user:', error);
+  } finally {
+    await mongoose.disconnect();
+    process.exit(0);
   }
-});
-const upload = multer({ storage });
+}
 
-// Public routes (read-only)
-router.get('/', jobController.getAllJobs);
+createAdminUser();
 
-// Protected routes (admin only)
-router.post('/', requireAuth, requireAdmin, upload.single('companyLogo'), jobController.createJob);
-router.put('/:id', requireAuth, requireAdmin, upload.single('companyLogo'), jobController.updateJob);
-router.delete('/:id', requireAuth, requireAdmin, jobController.deleteJob);
-
-module.exports = router;

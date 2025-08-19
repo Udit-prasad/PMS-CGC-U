@@ -1,12 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-<<<<<<< HEAD
-const ProtectedRoute = ({ children, isAuthenticated }) => {
-  if (!isAuthenticated) {
-    return <Navigate to="/admin-login" replace />;
-  }
-=======
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
   // Check if user is authenticated
   const adminToken = localStorage.getItem('adminToken');
@@ -40,7 +34,6 @@ const ProtectedRoute = ({ children, requireAdmin = false }) => {
   }
 
   console.log('ProtectedRoute - Access granted');
->>>>>>> origin/job-fetching-fix
   return children;
 };
 
