@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { signup, signin } from "../../api/auth";
 import "./sign.css";
 
 function Sign() {
@@ -71,8 +72,9 @@ function Sign() {
     return !hasError;
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+
     // final validation
     if (!validateAll()) return;
     // Registration logic here (e.g., API call)
@@ -84,8 +86,9 @@ function Sign() {
     setValid({});
   };
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
+
     if (!validateAll()) return;
     // Sign-in logic here (e.g., API call)
     alert("Signed in as " + form.email);

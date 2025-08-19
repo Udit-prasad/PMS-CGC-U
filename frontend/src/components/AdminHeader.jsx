@@ -1,14 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import './AdminHeader.css';
-
-const AdminHeader = () => (
-  <header className="admin-header">
-    <h1>Admin Dashboard</h1>
-    {/* Add navigation links or user info here */}
-  </header>
-);
-=======
 import { useNavigate } from 'react-router-dom';
 import './AdminHeader.css';
 
@@ -44,12 +34,6 @@ const AdminHeader = () => {
             >
               📝 Job Management
             </button>
-            <button 
-              className="nav-btn"
-              onClick={() => handleNavigation('/application-management')}
-            >
-              📋 Application Management
-            </button>
             {isSuperAdmin && (
               <button 
                 className="nav-btn"
@@ -76,6 +60,5 @@ const AdminHeader = () => {
     </header>
   );
 };
->>>>>>> origin/job-fetching-fix
 
 export default AdminHeader;
