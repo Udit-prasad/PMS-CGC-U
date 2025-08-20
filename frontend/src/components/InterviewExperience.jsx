@@ -13,24 +13,24 @@ const dummyData = [
   },
   {
     id: 2,
-    company: "Amazon",
-    role: "SDE",
-    experience:
-      "There were two technical rounds and one bar-raiser. The first round was all about data structures, especially arrays and strings. The second round was a mix of coding and behavioral questions. The bar-raiser was more about leadership principles and how I handled conflicts. Prepare STAR stories for behavioral questions!",
-  },
-  {
-    id: 3,
     company: "Microsoft",
     role: "Intern",
     experience:
-      "The process had an online assessment, followed by two interviews. The OA was mostly MCQs and a couple of coding questions. The interviews were focused on problem-solving and my resume projects. They really liked when I explained my approach step by step.",
+    "The process had an online assessment, followed by two interviews. The OA was mostly MCQs and a couple of coding questions. The interviews were focused on problem-solving and my resume projects. They really liked when I explained my approach step by step.",
+  },
+  {
+    id: 3,
+    company: "Amazon",
+    role: "SDE",
+    experience:
+    "There were two technical rounds and one bar-raiser. The first round was all about data structures, especially arrays and strings. The second round was a mix of coding and behavioral questions. ",
   },
   {
     id: 4,
     company: "Goldman Sachs",
     role: "Analyst",
     experience:
-      "There was a hackerrank test, then a group discussion, and finally two interviews. The interviews were a mix of technical and HR. They asked about finance basics, puzzles, and my motivation for joining GS. Be confident and clear about why you want the role.",
+    "There was a hackerrank test, then a group discussion, and finally two interviews. The interviews were a mix of technical and HR. They asked about finance basics, puzzles, and my motivation for joining GS. Be confident and clear about why you want the role.",
   },
   {
     id: 5,
@@ -91,7 +91,7 @@ export default function InterviewExperience() {
       <p className="ie-desc">Share your interview journey or read others' experiences. Use the filters to find stories by company or role.</p>
       <div className="ie-nav">
         <button className={view === "add" ? "active" : ""} onClick={() => setView("add")}>Add Interview Experience</button>
-        <button className={view === "read" ? "active" : ""} onClick={() => setView("read")}>Read Interview Experiences</button>
+        <button className={view === "read" ? "active" : ""} onClick={() => setView("read")}>Read Interview Experience</button>
       </div>
       {view === "add" && (
         <form className="ie-form ie-form-redesign" onSubmit={handleFormSubmit}>
@@ -164,7 +164,7 @@ export default function InterviewExperience() {
                     : exp.experience}
                 </p>
                 <div className="ie-card-actions">
-                  <button className="ie-view-btn" onClick={e => {e.stopPropagation(); setSelected(exp);}}>Read Full Experience</button>
+                  <button className="ie-view-btn" onClick={e => {e.stopPropagation(); setSelected(exp);}}>Read</button>
                   <button className="ie-delete-btn" onClick={e => handleDelete(exp.id, e)}>Delete</button>
                 </div>
               </li>
