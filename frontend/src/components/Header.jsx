@@ -47,6 +47,7 @@ function Header() { const [theme, setTheme] = useState('light');
         <Link to="/jobs">Jobs</Link>
         <Link to="/profile">Student Profile</Link>
         <Link to="/admin-job-posting">Admin Panel</Link>
+        <Link to="/interview-experience">Interview Experience</Link>
 
          {/* Theme toggle button */}
         <button 

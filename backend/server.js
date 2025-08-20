@@ -1,3 +1,6 @@
+// Interview Experience routes
+const interviewExperienceRoutes = require('./routes/interviewExperienceRoutes');
+app.use('/api/interview-experiences', interviewExperienceRoutes);
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');

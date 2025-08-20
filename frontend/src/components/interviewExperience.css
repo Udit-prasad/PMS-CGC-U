@@ -1,0 +1,268 @@
+.ie-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.ie-delete-btn {
+  background: var(--maroon-700);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 0.5rem;
+}
+.ie-delete-btn:hover {
+  background: var(--maroon-800);
+}
+.ie-form-redesign {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto 2rem auto;
+}
+.ie-form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+.ie-form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+.ie-form-group label {
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--maroon-700);
+}
+.ie-form-group input,
+.ie-form-group textarea {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  background: #fff;
+  resize: vertical;
+}
+.ie-form-group textarea {
+  min-height: 120px;
+}
+.ie-form-redesign button[type="submit"] {
+  background: var(--maroon-700);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem 2rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ie-form-redesign button[type="submit"]:hover {
+  background: var(--maroon-800);
+}
+
+.ie-read-section {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.ie-list-redesign {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.ie-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+}
+.ie-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  transform: translateY(-2px) scale(1.01);
+}
+.ie-view-btn {
+  display: block;
+  margin: 1.2rem auto 0 auto;
+  background: var(--maroon-700);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.ie-view-btn:hover {
+  background: var(--maroon-800);
+}
+.ie-empty {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+/* Detail View */
+.ie-detail-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ie-back-btn {
+  background: var(--maroon-700);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.2rem;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.ie-detail-card {
+  width: 100%;
+}
+.ie-detail-title {
+  font-size: 2rem;
+  color: var(--maroon-700);
+  margin-bottom: 0.7rem;
+}
+.ie-detail-meta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.2rem;
+  color: #444;
+}
+.ie-detail-body {
+  background: #f7f7f7;
+  border-radius: 6px;
+  padding: 1.2rem;
+}
+.ie-detail-body h3 {
+  margin-top: 0;
+  color: var(--maroon-700);
+}
+.ie-detail-body p {
+  color: #222;
+  font-size: 1.08rem;
+  margin: 0.7rem 0 0 0;
+  white-space: pre-line;
+}
+.interview-experience-page {
+  max-width: 700px;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ie-title {
+  font-size: 2.2rem;
+  color: var(--maroon-700);
+  margin-bottom: 0.5rem;
+}
+.ie-desc {
+  color: #555;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.ie-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+.ie-nav button.active {
+  background: var(--maroon-800);
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid var(--maroon-700);
+}
+.ie-form input, .ie-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.ie-form button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+.ie-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+.ie-filters input {
+  border: 1.5px solid var(--maroon-700);
+  border-radius: 5px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+.ie-filters input:focus {
+  border: 2px solid var(--maroon-800);
+}
+.ie-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+.ie-item {
+  background: #f7f7f7;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.ie-meta {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.ie-company {
+  color: var(--maroon-700);
+}
+.ie-role {
+  color: #333;
+}
+.ie-text {
+  color: #222;
+  margin: 0;
+}
+.ie-item strong {
+  color: #007bff;
+}
