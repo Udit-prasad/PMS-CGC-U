@@ -8,10 +8,10 @@ function Sign() {
 
   // Form state -- added phone for registration (assumption: phone required on register)
   const [form, setForm] = useState({
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   // Validation state
@@ -36,7 +36,7 @@ function Sign() {
     } else if (name === "email") {
       // specific format validation
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = "Enter a valid email address";
-  } else if (name === "password") {
+    } else if (name === "password") {
       if (value.length < 6) error = "Password must be at least 6 characters";
     } else if (name === "confirmPassword") {
       if (value !== form.password) error = "Passwords do not match";
@@ -62,7 +62,7 @@ function Sign() {
 
   const validateAll = () => {
     const fields = isRegister
-  ? ["name", "email", "password", "confirmPassword"]
+      ? ["name", "email", "password", "confirmPassword"]
       : ["email", "password"];
     let hasError = false;
     fields.forEach((f) => {
@@ -78,9 +78,15 @@ function Sign() {
     // final validation
     if (!validateAll()) return;
     // Registration logic here (e.g., API call)
+    const res = await signup(form);
+    if (res.error) {
+      alert("Registration failed: " + res.error);
+      return;
+    }
+    console.log("Registration response:", res);
     alert("Registered successfully! Please sign in.");
     setIsRegister(false);
-  setForm({ name: "", email: "", password: "", confirmPassword: "" });
+    setForm({ name: "", email: "", password: "", confirmPassword: "" });
     setErrors({});
     setTouched({});
     setValid({});
@@ -91,8 +97,14 @@ function Sign() {
 
     if (!validateAll()) return;
     // Sign-in logic here (e.g., API call)
+    const res = signin(form);
+    console.log("Sign-in response:", res);
+    if (res.error) {
+      alert("Sign-in failed: " + res.error);
+      return;
+    }
     alert("Signed in as " + form.email);
-  setForm({ name: "", email: "", password: "", confirmPassword: "" });
+    setForm({ name: "", email: "", password: "", confirmPassword: "" });
     setErrors({});
     setTouched({});
     setValid({});
@@ -106,6 +118,7 @@ function Sign() {
         <form onSubmit={isRegister ? handleRegister : handleSignIn} noValidate>
           {isRegister && (
             <div className="field-wrap">
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 name="name"
@@ -127,10 +140,11 @@ function Sign() {
           )}
 
           <div className="field-wrap">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Enter Email"
               value={form.email}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -146,13 +160,12 @@ function Sign() {
             )}
           </div>
 
-          
-
           <div className="field-wrap">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Enter Password"
               value={form.password}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -170,6 +183,7 @@ function Sign() {
 
           {isRegister && (
             <div className="field-wrap">
+              <label htmlFor="confirmpassword">Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
