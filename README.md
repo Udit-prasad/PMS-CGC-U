@@ -224,6 +224,7 @@ We're actively seeking passionate developers to help us revolutionize campus pla
 ## 🧑‍🏫 *Mentors*
 
 - [Sanjana Gurav](https://github.com/213sanjana)
+- [Poushmita](https://github.com/Poushmita)
 
 ## 📞 **Connect With Us**
 
