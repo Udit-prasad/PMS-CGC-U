@@ -16,7 +16,7 @@ This document records **all contributions** to the project and assigns points ba
 
 
 
-| #️⃣ S.No | 👤 GitHub Profile | 🎯 Points | 🔗 PR No. | 📌 Task Description                                      |
+| #️⃣ S.No | 👤 GitHub Profile | 🎯 Points | 🔗 PR No. | 📌 Task Description                                     |
 | -------- | ----------------- | --------- | --------- | -------------------------------------------------------- |
 | 1        | hemanth5055       | 3         | #19       | Enhanced contact links appearance                        |
 | 2        | Jai-76            | 3         | #1        | License Missing from Repository                          |
@@ -31,6 +31,12 @@ This document records **all contributions** to the project and assigns points ba
 | 11       | Salusha           | 7         | #61       | Modified-Admin Panel                                     |
 | 12       | RoshniRautela     | 3         | #65       | Applied dark mode to login page                          |
 | 13       | Sathish1708127    | 3         | #66, #67  | Fixed hover underline & phone icon in Contact Us         |
-| 14       | Shreyaraut1       | 3         | #86       | Replaced twitter icon with x                             |
-
+| 14       | Shreyaraut12      | 3         | #86       | Replaced twitter icon with x                             |
+| 15       | SiddharthSahai10  | 10        | #70       | Add On-Campus Job Posting with Dynamic Application Forms |
+| 16       | Kirti276          | 10        | #78       | My admin branch                                          |
+| 17       | MehakGo           | 7         | #79       | feat: Add Custom JS Form Validation for Regsiter form    |
+| 18       | MayankV004        | 7         | #80       | Redesigned Student dashboard                             |
+| 19       | mohdhassaan07     | 7         | #83       | fix(Signin page)- fixes the signin page UI               |
+| 20       | AbhishekRajput1601| 10        | #81       | added interview experience section                       |
+| 21       | Rashidaga18       | 3         | #89       | Missing Hover Interaction on Section Elements            |
 
