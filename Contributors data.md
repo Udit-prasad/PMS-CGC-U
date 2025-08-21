@@ -39,4 +39,8 @@ This document records **all contributions** to the project and assigns points ba
 | 19       | mohdhassaan07     | 7         | #83       | fix(Signin page)- fixes the signin page UI               |
 | 20       | AbhishekRajput1601| 10        | #81       | added interview experience section                       |
 | 21       | Rashidaga18       | 3         | #89       | Missing Hover Interaction on Section Elements            |
+| 22       | akofficial10      | 7         | #94       | Fix: Page Scroll Position on Navigation                  |
+| 23       | dev-prachi        | 3         | #95       | Add contact button enhancement                           |
+
+
 
