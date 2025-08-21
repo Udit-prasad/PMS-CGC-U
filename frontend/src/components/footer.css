@@ -219,7 +219,7 @@
 
 
 .footer-cta .outline {
-  background: transparent;
+  background:#800000;
   color: white;
   outline-color: var(--primary-color);
   border: 1px solid var(--primary-color);
