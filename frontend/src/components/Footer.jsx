@@ -1,12 +1,12 @@
 import React from "react";
 import {
   FaLinkedin,
-  FaTwitter,
   FaGithub,
   FaEnvelope,
   FaMapMarkerAlt,
   FaPhone,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import "./footer.css";
 
 function Footer() {
@@ -24,8 +24,8 @@ function Footer() {
               <a href="#" aria-label="LinkedIn">
                 <FaLinkedin />
               </a>
-              <a href="#" aria-label="Twitter">
-                <FaTwitter />
+              <a href="#" aria-label="X">
+                <FaXTwitter />
               </a>
               <a href="#" aria-label="GitHub">
                 <FaGithub />
