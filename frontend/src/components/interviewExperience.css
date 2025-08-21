@@ -108,6 +108,9 @@
   margin-top: 0.5rem;
   cursor: pointer;
   transition: background 0.2s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .ie-form-redesign button[type="submit"]:hover {
   background: var(--maroon-800);
@@ -260,6 +263,7 @@
   font-size: 2.2rem;
   color: var(--maroon-700);
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 .ie-desc {
   color: #555;
