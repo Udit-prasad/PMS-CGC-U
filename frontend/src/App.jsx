@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./components/home";
+import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Sign from "./components/Sign";
 import About from "./components/About";
@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import BackToTop from "./components/BackToTop";
 import "../src/index.css";
 import AdminJobPosting from "./components/AdminJobPosting";
-import JobsPage from "./components/jobs";
+import JobsPage from "./components/Jobs";
 
 function App() {
   return (
