@@ -1,12 +1,12 @@
 import React from "react";
 import {
   FaLinkedin,
-  FaTwitter,
   FaGithub,
   FaEnvelope,
   FaMapMarkerAlt,
   FaPhone,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import "./footer.css";
 
 function Footer() {
@@ -24,8 +24,8 @@ function Footer() {
               <a href="#" aria-label="LinkedIn">
                 <FaLinkedin />
               </a>
-              <a href="#" aria-label="Twitter">
-                <FaTwitter />
+              <a href="#" aria-label="X">
+                <FaXTwitter />
               </a>
               <a href="#" aria-label="GitHub">
                 <FaGithub />
@@ -88,7 +88,7 @@ function Footer() {
                   <span>contact@placementsystem.com</span>
                 </li>
                 <li>
-                  <FaPhone className="contact-icon" />
+                  <FaPhone className="contact-icon phone" />
                   <span>(555) 123-4567</span>
                 </li>
               </ul>
@@ -99,14 +99,14 @@ function Footer() {
         {/* Bottom Section */}
         <div className="footer-bottom">
           <div className="footer-copyright">
-            &copy; {new Date().getFullYear()} Placement Management System. All
+            &copy; {new Date().getFullYear()} Campus Recruitment Portal. All
             rights reserved.
           </div>
           <div className="footer-cta">
             <a href="/signin" className="footer-cta-button">
               Sign In
             </a>
-            <a href="/contact" className="footer-cta-button outline">
+            <a href="/contact" className="outline">
               Contact Us
             </a>
           </div>
